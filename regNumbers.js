@@ -1,6 +1,6 @@
 module.exports = function regForTowns(pool) {
     var nameOfTown;
-    var filterSec;
+  
     async function setNumber(numbers) {
 
         let upperCase = numbers.toUpperCase(2);
@@ -32,7 +32,7 @@ module.exports = function regForTowns(pool) {
 
             //    console.log(element);
         }
-        console.log("towns", towns_id);
+        // console.log("towns", towns_id);
 
     }
 
@@ -46,18 +46,23 @@ module.exports = function regForTowns(pool) {
     }
 
 
-    async function filterNumbers(toFilter) {
+     async function filterNumbers(toFilter) {
+//         let filterSec;
 
-        var filterTowns = await pool.query('SELECT * FROM reg_numbers WHERE regNumber = $1', [toFilter])
-        for (let x = 0; x < filterTowns.rows.length; x++) {
-            const rowToFilter = filterTowns.rows[x]
-            console.log(rowToFilter);
+console.log(toFilter);
+
+        var filterTowns = await pool.query('SELECT * FROM towns WHERE tag = $1', [toFilter])
+        // console.log(filterTowns)
+        // for (let x = 0; x < filterTowns.rows.length; x++) {
+        //     const rowToFilter = filterTowns.rows[x]
+        //     console.log("filter",rowToFilter);
             
-        // if (toFilter=== rowToFilter.) {
-        //     filterSec = ;
-        // }
+//         if (toFilter=== rowToFilter.regnumber) {
+//             filterSec = rowToFilter.regnumber;
+//         }
 
-    }
+    // }
+//  //  return filterSec;
 }
 
     return {

@@ -50,7 +50,7 @@ app.use(express.static('public'));
 
 app.get('/', myRoutes.enteredNumbers);
 app.post('/reg_numbers', myRoutes.add);
-// app.get('/reg_numbers', myRoutes.filtersApp);
+app.get('/filter_plate', myRoutes.filtersApp);
 
 // app.post('/greet', myRoutes.theList);
 

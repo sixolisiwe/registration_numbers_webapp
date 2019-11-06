@@ -21,12 +21,13 @@
             <form action="/add_plate" method="POST">
                 <div class="c">
                     <h2>
-                        <input type="text"  pattern = "[A-Za-z{2}\\s[0-9]{3}]*" name="textboxTemp" placeholder="Please enter a reg number" id="enterTemp">
+                        <input type="text" pattern="[A-Za-z{2}\\s[0-9]{3}]*" name="textboxTemp"
+                            placeholder="Please enter a reg number" id="enterTemp">
                     </h2>
                 </div>
                 <div class="d">
                     <h2>
-                        <button type="submit" name="addingTemp" class="addBtnTemp" > Add
+                        <button type="submit" name="addingTemp" class="addBtnTemp"> Add
                         </button>
                         <p id="l1"></p>
                     </h2>
@@ -34,60 +35,76 @@
             </form>
 
 
-            <h2>
-                <div class="e">
-                     {{!-- <a href="/reset"> <button  name ="resetBtn" class="btnClick" value="Reset"> Reset</button> </a>
+
+            <form action="/filter_plate" method="GET">
+
+                <h2>
+                    <div class="e">
+                        {{!-- <a href="/reset"> <button  name ="resetBtn" class="btnClick" value="Reset"> Reset</button> </a>
                     <button type="submit" name="clearTemp" class="clearTownTemp"> clear </button> --}}
-                </div>
-            </h2>
-            <label class="radio-inline">
-                <h4>
+                    </div>
+                </h2>
+                <label class="radio-inline">
+                    <h4>
+                        <span>
+                            <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town1" value="CY">
+                            Malmesbury
+                        </span>
+                </label>
+
+                <label class="radio-inline">
                     <span>
-                        <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town1" value="CK"> Malmesbury
+                        <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town2" value="CA"> Cape Town
                     </span>
-            </label>
+                </label>
 
-            <label class="radio-inline">
-                <span>
-                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town2" value="CA"> Cape Town
-                </span>
-            </label>
+                <label class="radio-inline">
+                    <span>
+                        <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town3" value="CJ"> Belville
+                    </span>
+                    <span>
+                        <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town4" value="AllTemp"> All
+                    </span>
+                </label>
+                </h4>
+                <div class="a">
+                    <div class="errorTemp">
 
-            <label class="radio-inline">
-                <span>
-                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town3" value="CJ"> Belville
-                </span>
-                <span>
-                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town3" value="AllTemp"> All
-                </span>
-            </label>
-            </h4>
-            <div class="a">
-                <div class="errorTemp">
-
-                </div>
-
-                <div class="f">
-                    <h2>
-                        <button type="submit" name="showingTemp" class="showTownTemp" >
-                            Show </button>
-                        <p id="l2"></p>
-                    </h2>
-                </div>
-                <!-- <div class="clear">
+                    </div>
+                    <div class="f">
+                        <h2>
+                            <button type="submit" name="showingTemp" class="showTownTemp">
+                                Show </button>
+                            <p id="l2"></p>
+                        </h2>
+                    </div>
+            </form>
+            <!-- <div class="clear">
                     <button type="button" name="clearTemp" class="clearTownTemp" onclick="filterRegTownTemp()"> Show
                     </button>
                 </div> -->
-                <h2>
-                    <div class="emptyTemp">
-                        {{#each reg_numbers}}
-                        <li class="regNumTemp" style="list-style: none">{{this.regnumber}}</li>
-                        {{/each}}
-                    </div>
-                </h2>
-            </div>
+            <h2>
+                <div class="entry">
+                    <h5 style="color:red"> {{messages}}</h5>
+                </div>
+                <div class="emptyTemp">
+                    {{#each reg_numbers}}
+                    <li class="regNumTemp" style="list-style: none">{{this.regnumber}}</li>
+                    {{/each}}
+                </div>
+
+                <div class="filterTemp">
+                    {{#each filtered_numbers}}
+                    <li class="regNumTemp" style="list-style: none">{{this.regnumber}}</li>
+                    {{/each}}
+                </div>
+
+
+            </h2>
         </div>
         </div>
+        </div>
+
     </form>
 
 </body>
