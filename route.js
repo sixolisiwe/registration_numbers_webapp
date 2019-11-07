@@ -31,12 +31,17 @@ module.exports = function names(townApp) {
     }
 
     async function filtersApp(req, res) {
+        // console.log(req.body);
+        
         let filterInput = req.body.radioBtnTemp;
-        await townApp.filterNumbers(filterInput);
-        // console.log(await townApp.filterNumbers(filterInput));
-
-        res.redirect('/')
-    }
+         console.log(await townApp.filterNumbers(filterInput), "3333333333333333");
+        
+        res.render('index', {
+        filtered : await townApp.filterNumbers(filterInput)
+    
+        // res.redirect('/')
+    })
+}
 
     return {
         enteredNumbers,

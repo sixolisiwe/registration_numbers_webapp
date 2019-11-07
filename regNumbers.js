@@ -1,6 +1,6 @@
 module.exports = function regForTowns(pool) {
     var nameOfTown;
-  
+
     async function setNumber(numbers) {
 
         let upperCase = numbers.toUpperCase(2);
@@ -10,15 +10,7 @@ module.exports = function regForTowns(pool) {
         let duplicate = " ";
         for (let x = 0; x < towns_table.rows.length; x++) {
             const row = towns_table.rows[x]
-            // const element = towns_table.rows[x].tag;
-            // console.log("tag", element);
-            // console.log("row==",row);
-
             if (upperCase.startsWith(row.tag)) {
-                // console.log("tag",row.tag);
-
-                // console.log('rowid', row.id);
-
                 towns_id = row.id
             }
             if (already_exist.rowCount === 1) {
@@ -27,47 +19,52 @@ module.exports = function regForTowns(pool) {
             if (towns_id === row.id) {
                 await pool.query('INSERT INTO reg_numbers (regNumber,town_id) VALUES ($1,$2)', [upperCase, towns_id])
             }
-
-            // console.log("user" , numbers);
-
-            //    console.log(element);
         }
-        // console.log("towns", towns_id);
-
     }
 
     async function getNumber() {
 
         nameOfTown = await pool.query("SELECT * FROM reg_numbers");
-        // console.log(nameOfTown.rows, 'plate addded');
         return nameOfTown.rows;
-
 
     }
 
+    async function filterNumbers(toFilter) {
 
-     async function filterNumbers(toFilter) {
-//         let filterSec;
+        let filterSec = toFilter
+        let toCheck = [];
+        
+        var filterTowns = await pool.query('SELECT * FROM towns INNER JOIN reg_numbers ON towns.id = reg_numbers.town_id');
+        var y = filterTowns.rows
+        console.log(filterSec);
+        if(filterSec === "AllTemp"){
+            return y;
+        }
+        
+        for (let x = 0; x < y.length; x++) {
+            const rowToFilter = y[x]
+        //   console.log("filter", rowToFilter);
 
-console.log(toFilter);
+            if(filterSec === rowToFilter.tag){
+        // console.log(rowToFilter);
+        
+                // console.log(rowToFilter.regnumber);
+               toCheck.push(rowToFilter.regnumber);
 
-        var filterTowns = await pool.query('SELECT * FROM towns WHERE tag = $1', [toFilter])
-        // console.log(filterTowns)
-        // for (let x = 0; x < filterTowns.rows.length; x++) {
-        //     const rowToFilter = filterTowns.rows[x]
-        //     console.log("filter",rowToFilter);
-            
-//         if (toFilter=== rowToFilter.regnumber) {
-//             filterSec = rowToFilter.regnumber;
-//         }
+            // console.log(toCheck, "************");
 
-    // }
-//  //  return filterSec;
-}
+            }  
+        }
+     
+        return toCheck; 
+       
+
+    }
 
     return {
         setNumber,
         getNumber,
         filterNumbers
     }
+
 }

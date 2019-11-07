@@ -36,7 +36,7 @@
 
 
 
-            <form action="/filter_plate" method="GET">
+            <form action="/filter_plate" method="POST">
 
                 <h2>
                     <div class="e">
@@ -94,9 +94,14 @@
                 </div>
 
                 <div class="filterTemp">
-                    {{#each filtered_numbers}}
+                    {{#each filtered}}
+                    {{#if this.regnumber }}
                     <li class="regNumTemp" style="list-style: none">{{this.regnumber}}</li>
-                    {{/each}}
+                    {{else}}
+                    <li class="regNumTemp" style="list-style: none">{{this}}</li>
+                    {{/if}}
+
+                {{/each}}
                 </div>
 
 

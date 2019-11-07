@@ -50,7 +50,7 @@ app.use(express.static('public'));
 
 app.get('/', myRoutes.enteredNumbers);
 app.post('/reg_numbers', myRoutes.add);
-app.get('/filter_plate', myRoutes.filtersApp);
+app.post('/filter_plate', myRoutes.filtersApp);
 
 // app.post('/greet', myRoutes.theList);
 
@@ -59,7 +59,7 @@ app.get('/filter_plate', myRoutes.filtersApp);
 // app.get('/reset', myRoutes.resetsApp);
 
 
-const PORT = process.env.PORT || 3000; //config port to use default and define new port
+const PORT = process.env.PORT || 3001; //config port to use default and define new port
 app.listen(PORT, function () {
     console.log("App listening at port:", PORT);
 
