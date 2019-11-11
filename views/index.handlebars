@@ -21,7 +21,7 @@
             <form action="/add_plate" method="POST">
                 <div class="c">
                     <h2>
-                        <input type="text" pattern="[A-Za-z{2}\\s[0-9]{3}]*" name="textboxTemp"
+                        <input type="text" maxlength="10" name="textboxTemp"
                             placeholder="Please enter a reg number" id="enterTemp">
                     </h2>
                 </div>
@@ -85,7 +85,7 @@
                 </div> -->
             <h2>
                 <div class="entry">
-                    <h5 style="color:red"> {{messages}}</h5>
+                    <h5 style="color:red"> {{messages.error}}</h5>
                 </div>
                 <div class="emptyTemp">
                     {{#each reg_numbers}}
