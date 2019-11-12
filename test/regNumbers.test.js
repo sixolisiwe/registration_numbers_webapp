@@ -1,5 +1,5 @@
-const assert = require("assert")
-const regNumb = require('../regNumbers')
+const assert = require("assert");
+const regNumb = require('../regNumbers');
 const pg = require("pg");
 const Pool = pg.Pool;
 
@@ -23,7 +23,7 @@ describe('The basic database web app', function () {
 
         // the Factory Function is called CategoryService
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("ca 123 85")
+        await RegInstance.setNumber("ca 123 85");
 
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
@@ -34,9 +34,9 @@ describe('The basic database web app', function () {
 
 
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("ca 123 85")
-        await RegInstance.setNumber("cy 123 25")
-        await RegInstance.setNumber("cj 823 85")
+        await RegInstance.setNumber("ca 123 85");
+        await RegInstance.setNumber("cy 123 25");
+        await RegInstance.setNumber("cj 823 85");
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
 
@@ -46,7 +46,7 @@ describe('The basic database web app', function () {
 
 
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("ca123 85")
+        await RegInstance.setNumber("ca123 85");
 
 
         let number = await RegInstance.getNumber();
@@ -58,14 +58,14 @@ describe('The basic database web app', function () {
 
 
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("ca 183 25")
-        await RegInstance.setNumber("cj 623 85")
-        await RegInstance.setNumber("ca 113 55")
+        await RegInstance.setNumber("ca 183 25");
+        await RegInstance.setNumber("cj 623 85");
+        await RegInstance.setNumber("ca 113 55");
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
-        var town = 'CA'
+        var town = 'CA';
 
-        let capetownRegs = await RegInstance.filterNumbers(town)
+        let capetownRegs = await RegInstance.filterNumbers(town);
         assert.deepEqual(capetownRegs, ["CA 183 25", "CA 113 55"]);
     });
 
@@ -74,14 +74,14 @@ describe('The basic database web app', function () {
 
 
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("cj 153 25")
+        await RegInstance.setNumber("cj 153 25");
         // await RegInstance.setNumber("cj 623 85")
 
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
-        var town = 'CJ'
+        var town = 'CJ';
 
-        let capetownRegs = await RegInstance.filterNumbers(town)
+        let capetownRegs = await RegInstance.filterNumbers(town);
         assert.equal(capetownRegs, "CJ 153 25");
     });
 
@@ -89,14 +89,14 @@ describe('The basic database web app', function () {
 
 
         let RegInstance = regNumb(pool);
-        await RegInstance.setNumber("cy 113 25")
+        await RegInstance.setNumber("cy 113 25");
         // await RegInstance.setNumber("cj 623 85")
 
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
-        var town = 'CY'
+        var town = 'CY';
 
-        let capetownRegs = await RegInstance.filterNumbers(town)
+        let capetownRegs = await RegInstance.filterNumbers(town);
         assert.equal(capetownRegs, "CY 113 25");
     });
 
@@ -104,5 +104,5 @@ describe('The basic database web app', function () {
 
     after(function () {
         pool.end();
-    })
+    });
 });

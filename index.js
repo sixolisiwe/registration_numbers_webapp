@@ -1,5 +1,5 @@
 const express = require('express'); //importing express
-const bodyParser = require('body-parser') //import bp
+const bodyParser = require('body-parser'); //import bp
 const exphbs = require('express-handlebars'); //reference express-hbs after download
 
 const townRegNumbers = require('./regNumbers');
@@ -23,7 +23,7 @@ const pool = new Pool({
 });
 
 const townApp = townRegNumbers(pool);
-const myRoutes = routes(townApp)
+const myRoutes = routes(townApp);
 
 
 app.engine('handlebars', exphbs({
@@ -42,9 +42,9 @@ app.use(flash());
 
 app.use(bodyParser.urlencoded({
     extended: false
-}))
+}));
 
-app.use(bodyParser.json()) //config as per line13
+app.use(bodyParser.json()); //config as per line13
 
 app.use(express.static('public'));
 
@@ -62,5 +62,4 @@ app.post('/filter_plate', myRoutes.filtersApp);
 const PORT = process.env.PORT || 3001; //config port to use default and define new port
 app.listen(PORT, function () {
     console.log("App listening at port:", PORT);
-
-})
+});
