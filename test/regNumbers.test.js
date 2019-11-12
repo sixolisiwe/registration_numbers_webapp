@@ -4,7 +4,7 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 // we are using a special test database for the tests
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/my_reg_numbers';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost/my_reg_numbers';
 
 
 const pool = new Pool({
@@ -59,14 +59,14 @@ describe('The basic database web app', function () {
 
         let RegInstance = regNumb(pool);
         await RegInstance.setNumber("ca 183 25")
-        // await RegInstance.setNumber("cj 623 85")
-
+        await RegInstance.setNumber("cj 623 85")
+        await RegInstance.setNumber("ca 113 55")
         let number = await RegInstance.getNumber();
         assert.equal(number.rows);
         var town = 'CA'
 
         let capetownRegs = await RegInstance.filterNumbers(town)
-        assert.equal(capetownRegs, "CA 183 25");
+        assert.equal(capetownRegs, "CA 183 25", "CA 113 55");
     });
 
 
