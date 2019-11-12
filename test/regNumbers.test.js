@@ -4,8 +4,7 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 // we are using a special test database for the tests
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres@localhost:5432/my_reg_numbers_test'
-;
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost/my_reg_numbers';
 
 
 const pool = new Pool({
@@ -67,7 +66,7 @@ describe('The basic database web app', function () {
         var town = 'CA'
 
         let capetownRegs = await RegInstance.filterNumbers(town)
-        assert.equal(capetownRegs, "CA 183 25", "CA 113 55");
+        assert.deepEqual(capetownRegs, ["CA 183 25", "CA 113 55"]);
     });
 
 
