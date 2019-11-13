@@ -20,12 +20,13 @@ module.exports = function names(townApp) {
 
         if (regexTest === true) {
             await townApp.setNumber(input);
-        } else {
-            req.flash('error', 'format not supported!');
+        }
+        else {
+            req.flash('error', 'format not supported');
 
         }
         if (input === '') {
-            req.flash('error', 'please enter a valid registration number');
+            req.flash('error',    'please enter a valid registration number');
         }
 
 
