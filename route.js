@@ -6,31 +6,27 @@ module.exports = function names(townApp) {
         let town = await townApp.getNumber();
         res.render('index', {
             reg_numbers: town,
-            // messages: req.flash
+    
         });
 
     }
 
     async function add(req, res) {
-        // let town = await townApp.getNumber();
 
         let input = req.body.textboxTemp;
         let regex = /^[A-Za-z]{2}\s[0-9\s]{3}\s[0-9]{3}$/;
         let regexTest = regex.test(input);
 
-
-        // if (input !== undefined) {
-        //     req.flash('error', 'already entered!');
-        // }
-
-        if (input === '') {
-            req.flash('error', 'please enter a valid registration number');
+        if (input === ''|| input === undefined) {
+            req.flash('error', 'please enter a valid registration number!');
         } else if (regexTest === true) {
-            await townApp.setNumber(input);
+            let error = await townApp.setNumber(input);
+            (error)? req.flash('error', 'already entered!'): "";
         } else {
-            req.flash('error', 'format not supported');
+            req.flash('error', 'Incorrect format, e.g CA 123 456');
 
         }
+        
 
         res.redirect('/');
     }
