@@ -18,7 +18,7 @@ module.exports = function names(townApp) {
         let regexTest = regex.test(input);
 
         if (input === ''|| input === undefined) {
-            req.flash('error', 'please enter a valid registration number!');
+            req.flash('error', 'Please enter a valid registration number!');
         } else if (regexTest === true) {
             let error = await townApp.setNumber(input);
             (error)? req.flash('error', 'Already entered!'): "";
