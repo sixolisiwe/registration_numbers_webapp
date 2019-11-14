@@ -9,7 +9,7 @@ module.exports = function regForTowns(pool) {
         let towns_id;
         if (already_exist.rowCount === 1) {
 
-            return "already entered!";
+            return "Already entered!";
         }
         // let duplicate = " ";
         for (let x = 0; x < towns_table.rows.length; x++) {

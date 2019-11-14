@@ -21,7 +21,7 @@ module.exports = function names(townApp) {
             req.flash('error', 'please enter a valid registration number!');
         } else if (regexTest === true) {
             let error = await townApp.setNumber(input);
-            (error)? req.flash('error', 'already entered!'): "";
+            (error)? req.flash('error', 'Already entered!'): "";
         } else {
             req.flash('error', 'Incorrect format, e.g CA 123 456');
 
@@ -35,7 +35,7 @@ module.exports = function names(townApp) {
         let filterInput = req.body.radioBtnTemp;
 
         if (filterInput === '' || filterInput === undefined) {
-            req.flash('error', 'please select a valid town');
+            req.flash('error', 'Please select a valid town');
 
         }
         res.render('index', {
